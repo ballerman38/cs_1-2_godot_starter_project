@@ -14,7 +14,7 @@ var coins = 0
 var maxHealth = 10
 var health = maxHealth
 
-func _ready() -> void:
+func        _ready() -> void:
 	pass
 
 func _physics_process(_delta):
