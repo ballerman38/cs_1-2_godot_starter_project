@@ -3,8 +3,8 @@ extends CharacterBody2D
 var projectile_original = preload("res://scenes/projectile.tscn")
 
 var xSpeed = 300.0
-var xDirection = 0
 var facing = "down"
+var xDirection = 0
 var ySpeed = 300.0
 var yDirection = 0
 var coins = 0
@@ -14,7 +14,7 @@ var coins = 0
 var maxHealth = 10
 var health = maxHealth
 
-func        _ready() -> void:
+func _ready() -> void:
 	pass
 
 func _physics_process(_delta):
