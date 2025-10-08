@@ -1,6 +1,8 @@
 extends CharacterBody2D
 @onready var _animation_player: AnimatedSprite2D = $AnimatedSprite2D
 var projectile_original = preload("res://scenes/projectile.tscn")
+@onready var hit_box: Area2D = $Area2D
+
 
 var xSpeed = 300.0
 var facing = "down"
@@ -13,7 +15,7 @@ var coins = 0
 # TODO: Add health system variables
 var maxHealth = 10
 var health = maxHealth
-
+var attack_timer = 0.67
 func _ready() -> void:
 	pass
 
@@ -38,13 +40,16 @@ func _physics_process(_delta):
 	# TODO: Update facing direction based on movement
 	if xDirection > 0:
 		facing = "right"
+		hit_box.position = Vector2(30,0)
 	elif xDirection < 0:
 		facing = "left"
+		hit_box.position = Vector2(-30,0)
 	elif yDirection < 0:
 		facing = "up"
+		hit_box.position = Vector2(0,-30)
 	elif yDirection > 0:
 		facing = "down"
-	
+		hit_box.position = Vector2(0,30)
 	if Input.is_action_just_pressed("ui_select"):
 		shoot()
 	
@@ -101,3 +106,12 @@ func shoot():
 	get_tree().get_root().add_child(projectile_clone)
 
 	pass
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+
+	pass # Replace with function body.
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.
