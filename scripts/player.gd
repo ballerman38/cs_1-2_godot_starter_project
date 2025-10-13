@@ -11,6 +11,9 @@ var ySpeed = 300.0
 var yDirection = 0
 var coins = 0
 @export var offset : Vector2 = Vector2(0, -25)
+var attacking = false
+var max_attack_timer = 0.67
+var attacktimer = max_attack_timer
 
 # TODO: Add health system variables
 var maxHealth = 10
@@ -52,18 +55,28 @@ func _physics_process(_delta):
 		hit_box.position = Vector2(0,30)
 	if Input.is_action_just_pressed("ui_select"):
 		shoot()
+		
+	if attacking == true:
+		attack_timer -= _delta
+	if attack_timer < 0:
+		attacking = false
+		attack_timer = max_attack_timer
+	
 	
 	# call the animation function
 	update_animation()
-	
+	if Input.is_action_just_pressed("ui_accept"):
+		attack()
 	
 	# This is a special Godot function that makes the movement happen
 	move_and_slide()
 
 # TODO: Create animation function (add this outside of _physics_process)
 func update_animation():
+	if attacking == true:
+		_animation_player.play("attack_" + facing)
 	# TODO: Set the animation based on the facing direction
-	if velocity.is_zero_approx():
+	elif velocity.is_zero_approx():
 		_animation_player.play("idle_" + facing)
 	# This combines "idle_" with whatever direction we're facing
 		pass
@@ -73,7 +86,10 @@ func update_animation():
 		pass
 		
 	
-
+func attack():
+	attacking = true
+	print ("attacking")
+	pass
 
 # TODO: Create health change function for interactions
 func change_health(_amount:int):
