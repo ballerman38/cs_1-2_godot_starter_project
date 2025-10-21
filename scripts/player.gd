@@ -2,6 +2,9 @@ extends CharacterBody2D
 @onready var _animation_player: AnimatedSprite2D = $AnimatedSprite2D
 var projectile_original = preload("res://scenes/projectile.tscn")
 @onready var hit_box: Area2D = $Area2D
+var lever1 = false
+var lever2 = false
+var lever3 = false
 
 
 var xSpeed = 300.0
@@ -88,7 +91,6 @@ func update_animation():
 	
 func attack():
 	attacking = true
-	print ("attacking")
 	pass
 
 # TODO: Create health change function for interactions
