@@ -36,6 +36,13 @@ func _on_body_entered(body: Node2D) -> void:
 			else:
 				player.lever3=true
 				_animation_player.play("on")
+		if name == "Lever4":
+			if player.lever4:
+				player.lever4=false
+				_animation_player.play("off")
+			else:
+				player.lever4=true
+				_animation_player.play("on")
 	
 func update_animation():
 		pass

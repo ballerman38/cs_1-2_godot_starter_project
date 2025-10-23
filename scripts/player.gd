@@ -5,7 +5,7 @@ var projectile_original = preload("res://scenes/projectile.tscn")
 var lever1 = false
 var lever2 = false
 var lever3 = false
-
+var lever4 = false
 
 var xSpeed = 300.0
 var facing = "down"
@@ -69,7 +69,7 @@ func _physics_process(_delta):
 	# call the animation function
 	update_animation()
 	if Input.is_action_just_pressed("ui_accept"):
-		attack()
+		attacking = true
 	
 	# This is a special Godot function that makes the movement happen
 	move_and_slide()
@@ -90,7 +90,7 @@ func update_animation():
 		
 	
 func attack():
-	attacking = true
+	attacking = false
 	pass
 
 # TODO: Create health change function for interactions
