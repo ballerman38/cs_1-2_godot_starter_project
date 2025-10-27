@@ -6,7 +6,7 @@ var lever1 = false
 var lever2 = false
 var lever3 = false
 var lever4 = false
-
+var enemy = null
 var xSpeed = 300.0
 var facing = "down"
 var xDirection = 0
@@ -125,11 +125,18 @@ func shoot():
 
 	pass
 
-
+func process():
+	if enemy !=null and attacking == true:
+		enemy.queue_free()
 func _on_area_2d_body_entered(body: Node2D) -> void:
-
+	if body.is_in_group("enemy"):
+		enemy = body
 	pass # Replace with function body.
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.name == "enemy":
+		enemy = null
+	
+	
 	pass # Replace with function body.

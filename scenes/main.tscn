@@ -10770,7 +10770,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" groups=["enemy"]]
 
 [node name="GameManager" type="Node" parent="."]
 

@@ -1,5 +1,5 @@
 extends Area2D
-
+var lever2 = false
 func _ready() -> void:
 	pass
 
@@ -18,3 +18,6 @@ func _on_body_entered(body):
 	# TODO: Remove the coin from the game
 	
 	
+func password():
+	if lever2 == true:
+		print("password")
