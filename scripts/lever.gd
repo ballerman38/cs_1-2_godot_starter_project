@@ -52,12 +52,16 @@ func update_animation():
 		
 		
 func password():
-	if player.lever2 and player.lever3 and player.lever4 == true:
-		print("unlocked")
+	if player.lever2 and player.lever3 and player.lever4 == true and player.lever1 == false:
+		print("unlocked, +25 coins")
+		player.change_coins(+25)
+	elif player.lever1 and player.lever3 == true and player.lever2 == false:
 		player.queue_free()
+		print("bad combination")
 		
-	
 
+
+	
 		
 	
 

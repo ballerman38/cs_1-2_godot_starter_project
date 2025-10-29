@@ -65,11 +65,14 @@ func _physics_process(_delta):
 		attacking = false
 		attack_timer = max_attack_timer
 	
-	
 	# call the animation function
 	update_animation()
 	if Input.is_action_just_pressed("ui_accept"):
 		attacking = true
+		
+		if enemy != null:
+			enemy.queue_free()
+			print("hit")
 	
 	# This is a special Godot function that makes the movement happen
 	move_and_slide()
@@ -77,7 +80,9 @@ func _physics_process(_delta):
 # TODO: Create animation function (add this outside of _physics_process)
 func update_animation():
 	if attacking == true:
+		
 		_animation_player.play("attack_" + facing)
+		
 	# TODO: Set the animation based on the facing direction
 	elif velocity.is_zero_approx():
 		_animation_player.play("idle_" + facing)
@@ -125,9 +130,6 @@ func shoot():
 
 	pass
 
-func process():
-	if enemy !=null and attacking == true:
-		enemy.queue_free()
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		enemy = body
@@ -135,8 +137,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.name == "enemy":
+	if body.is_in_group("enemy"):
 		enemy = null
-	
+	pass
 	
 	pass # Replace with function body.
+func check():
+	if attacking == true:
+		print("attacking")
