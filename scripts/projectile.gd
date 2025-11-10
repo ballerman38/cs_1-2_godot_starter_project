@@ -21,3 +21,6 @@ func set_direction(facing_direction):
 		direction = Vector2.RIGHT
 	
 	pass
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		body.queue_free()

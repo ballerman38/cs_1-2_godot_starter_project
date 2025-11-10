@@ -4,7 +4,18 @@ var speed = 200
 var melee = false
 var chase = false
 var ranged = false
+var xDirection = 1
+var yDirection = 0
+var facing = "down"
+var body
+var direction = 0
 @onready var player: CharacterBody2D = %Player
+var projectile_original = preload("res://scenes/enemy_arrow.tscn") 
+var maxtimer = 1
+var timer = maxtimer
+
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
 
@@ -14,12 +25,23 @@ func _ready():
 
 
 func _process(delta):
-	if melee == true:
-		print("melee")
-	elif !melee and chase: 
+	
+	if ranged:
+		timer -= delta
+	if timer <0 and ranged == true:
+		timer = maxtimer
+		shoot()
+		
+	elif !ranged and !melee and chase:
+		direction = position.direction_to(player.position)
+		position +=direction*speed*delta
 		print("chase")
-	elif !melee and !chase and ranged:
-		print("ranged")
+	elif !ranged and !chase and melee:
+		print("melee")
+func set_direction(_direction):
+	direction = position.direction_to(_direction)
+	if direction.x < 0:
+		scale *= -1
 func _on_melee_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		melee = true
@@ -47,7 +69,18 @@ func _on_ranged_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		ranged = true
 		chase = false
-
+		shoot()
 func _on_ranged_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
 		ranged = false
+func shoot():
+	
+	var projectile_clone = projectile_original.instantiate()
+	
+
+	projectile_clone.global_position = position
+
+	projectile_clone.set_direction(player.position)
+	
+	
+	get_tree().get_root().add_child(projectile_clone)

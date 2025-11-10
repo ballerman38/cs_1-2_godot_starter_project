@@ -19,19 +19,7 @@ func _process(delta: float) -> void:
 
 
 	
-func shoot():
-	var projectile_clone = projectile_original.instantiate()
-	
 
-	projectile_clone.global_position = position + offset
-	
-
-	projectile_clone.set_direction(player.position)
-	
-	
-	get_tree().get_root().add_child(projectile_clone)
-
-	pass
 	
 
 
@@ -47,3 +35,16 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		player = body
 		in_range = false
 	pass # Replace with function body.
+func shoot():
+	var projectile_clone = projectile_original.instantiate()
+	
+
+	projectile_clone.global_position = position + offset
+	
+
+	projectile_clone.set_direction(player.position)
+	
+	
+	get_tree().get_root().add_child(projectile_clone)
+
+	
