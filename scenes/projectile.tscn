@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://lah76qx23g3n" path="res://sprites/items/turret_projectile.png" id="2_q3m7n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ok8aq"]
-radius = 19.15
+radius = 30.103983
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_softn"]
 atlas = ExtResource("2_q3m7n")

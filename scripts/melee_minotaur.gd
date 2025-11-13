@@ -1,6 +1,7 @@
 extends CharacterBody2D
 var health
-var speed = 200
+var speed = 100
+
 var melee = false
 var chase = false
 var ranged = false
@@ -25,19 +26,36 @@ func _ready():
 
 
 func _process(delta):
+	if xDirection > 0:
+		facing = "right"
+	elif xDirection < 0:
+		facing = "left"
+	elif yDirection < 0: 
+		facing = "up"
+	elif yDirection > 0:
+		facing = "down"
 	
 	if ranged:
 		timer -= delta
 	if timer <0 and ranged == true:
 		timer = maxtimer
 		shoot()
-		
+	
 	elif !ranged and !melee and chase:
 		direction = position.direction_to(player.position)
 		position +=direction*speed*delta
 		print("chase")
 	elif !ranged and !chase and melee:
-		print("melee")
+		print(" ")
+	if abs(position.x - player.position.x) > abs(position.y - player.position.y):
+		if position.x > player.position.x:
+			facing = "right"
+		elif position.x < player.position.x:
+			facing = "left"
+		if position.y > player.position.y:
+			facing = "down"
+		elif position.y < player.position.y:
+			facing = "up"
 func set_direction(_direction):
 	direction = position.direction_to(_direction)
 	if direction.x < 0:

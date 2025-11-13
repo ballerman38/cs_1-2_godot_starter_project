@@ -1004,13 +1004,13 @@ animations = [{
 radius = 21.633308
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_adppo"]
-radius = 31.016125
+radius = 45.01111
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uk8e4"]
-radius = 68.359344
+radius = 94.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yppwt"]
-radius = 114.0
+radius = 160.00313
 
 [node name="MeleeMinotaur" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_vltjp")
@@ -1037,7 +1037,7 @@ shape = SubResource("CircleShape2D_adppo")
 [node name="chase" type="Area2D" parent="."]
 
 [node name="ChaseShape2D" type="CollisionShape2D" parent="chase"]
-position = Vector2(0, 6)
+position = Vector2(-1, 6)
 shape = SubResource("CircleShape2D_uk8e4")
 
 [node name="ranged" type="Area2D" parent="."]
